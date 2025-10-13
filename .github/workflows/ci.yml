@@ -1,25 +1,15 @@
-name: Trigger Jenkins Job
+name: Build & Notify Jenkins
 
 on:
   push:
-    branches:
-      - main
+    branches: [ "main" ]
 
 jobs:
-  trigger-jenkins:
+  notify-jenkins:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Trigger Jenkins via REST API with CSRF token
-        env:
-          JENKINS_USER: admin
-          JENKINS_TOKEN: ${{ secrets.JENKINS_API_TOKEN }}
-          JENKINS_URL: http://34.22.89.44:8080
+      - name: Notify Jenkins via Webhook
         run: |
-          CRUMB=$(curl -s -u admin:$JENKINS_TOKEN "$JENKINS_URL/crumbIssuer/api/xml?xpath=concat(//crumbRequestField,\":\",//crumb)")
-          echo "Crumb: $CRUMB"
-          curl -X POST "$JENKINS_URL/job/devops/build" \
-            --user "admin:$JENKINS_TOKEN" \
-            -H "$CRUMB" \
-            --data-urlencode "token=build-token" \
-            --data-urlencode "GIT_COMMIT=${GITHUB_SHA}"
+          curl -X POST "http://34.22.89.44:8080/generic-webhook-trigger/invoke" \
+            --data "token=my-webhook-secret" \
+            --data-urlencode "GIT_BRANCH=main"
