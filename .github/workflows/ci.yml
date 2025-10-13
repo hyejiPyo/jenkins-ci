@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Trigger Jenkins via REST API
         run: |
-          curl -X POST "${{ secrets.JENKINS_URL }}/job/${{ secrets.JENKINS_JOB_NAME }}/buildWithParameters" \
-            --user "${{ secrets.JENKINS_USER }}:${{ secrets.JENKINS_API_TOKEN }}" \
-            --data-urlencode "token=${{ secrets.JENKINS_BUILD_TOKEN }}" \
+          curl -X POST "http://34.22.89.44:8080/job/devops/buildWithParameters" \
+            --user "admin:${{ secrets.JENKINS_API_TOKEN }}" \
+            --data-urlencode "token=build-token" \
             --data-urlencode "GIT_COMMIT=${{ github.sha }}"
