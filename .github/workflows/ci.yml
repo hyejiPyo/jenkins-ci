@@ -13,8 +13,9 @@ jobs:
 
       - name: Notify Jenkins via Webhook
         run: |
-          CRUMB=$(curl -s 'http://34.22.89.44:8080/crumbIssuer/api/json' | jq -r '.crumbRequestField + ":" + .crumb')
+          CRUMB=$(curl -s --user "admin:${JENKINS_TOKEN}" 'http://34.22.89.44:8080/crumbIssuer/api/json' | jq -r '.crumbRequestField + ":" + .crumb')
           curl -X POST "http://34.22.89.44:8080/generic-webhook-trigger/invoke" \
             -H "$CRUMB" \
+            --user "admin:${JENKINS_TOKEN}" \
             --data "token=my-webhook-secret" \
             --data-urlencode "GIT_BRANCH=main"
