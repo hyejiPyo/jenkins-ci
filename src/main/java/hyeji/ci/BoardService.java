@@ -6,7 +6,7 @@ public class BoardService {
 
     public void addPost(String title, String content) {
         if (title == null || title.isEmpty() || content == null || content.isEmpty()) {
-            throw new IllegalArgumentException("제목과 내용은 비어 있을 수 없습니다. 내용을 추가해주세요.");
+            throw new IllegalArgumentException("제목과 내용은 비어 있을 수 없습니다. 내용을 추가해주세요!");
         }
         posts.add(0, new Post(title, content)); // 최신글을 앞에 추가
     }
