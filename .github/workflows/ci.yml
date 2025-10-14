@@ -8,6 +8,9 @@ jobs:
   notify-jenkins:
     runs-on: ubuntu-latest
     steps:
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
       - name: Notify Jenkins via Webhook
         run: |
           CRUMB=$(curl -s 'http://34.22.89.44:8080/crumbIssuer/api/json' | jq -r '.crumbRequestField + ":" + .crumb')
@@ -15,5 +18,3 @@ jobs:
             -H "$CRUMB" \
             --data "token=my-webhook-secret" \
             --data-urlencode "GIT_BRANCH=main"
-      - name: Install jq (if not present)
-        run: sudo apt-get update && sudo apt-get install -y jq
