@@ -26,7 +26,7 @@ public class BoardServiceTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             boardService.addPost("", "내용");
         });
-        assertEquals("제목과 내용은 비어 있을 수 없습니다. 추가해주세요.", exception.getMessage());
+        assertEquals("제목과 내용은 비어 있을 수 없습니다. 내용을 추가해주세요.", exception.getMessage());
     }
 
     @Test
@@ -34,6 +34,6 @@ public class BoardServiceTest {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             boardService.addPost("제목", "");
         });
-        assertEquals("제목과 내용은 비어 있을 수 없습니다. 추가해주세요!!.", exception.getMessage());
+        assertEquals("제목과 내용은 비어 있을 수 없습니다. 내용을 추가해주세요.", exception.getMessage());
     }
 }
