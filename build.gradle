@@ -9,10 +9,8 @@ repositories {
 }
 
 dependencies {
-    
-    testImplementation platform('org.junit:junit-bom:5.10.2')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher:1.10.2'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test' // 테스트용 스프링 부트 의존성
 }
 
 test {
