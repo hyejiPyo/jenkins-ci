@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: myapp
   annotations:
-    argocd-image-updater.argoproj.io/image-list: myapp=hyejiPyo/myapp
+    argocd-image-updater.argoproj.io/image-list: cicd=pyohyeji/cicd
     argocd-image-updater.argoproj.io/myapp.update-strategy: latest
 spec:
   replicas: 1
@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: hyejiPyo/myapp:v1.0.1
+        image: pyohyeji/cicd:23
         ports:
         - containerPort: 80
