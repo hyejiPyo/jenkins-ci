@@ -8,7 +8,10 @@ public class Post {
     private String content;
     private final List<Attachment> attachments = new ArrayList<>();
 
-    public Post(String title, String content) { /* ...existing code... */ }
+    public Post(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 
     // getter/setter
     public String getTitle() {
@@ -26,10 +29,12 @@ public class Post {
     public void setContent(String content) {
         this.content = content;
     }
-     public List<Attachment> getAttachments() {
-         return new ArrayList<>(attachments);
-     }
-     public void addAttachment(Attachment a) {
-         if (a != null) attachments.add(a);
-     }
+
+    public List<Attachment> getAttachments() {
+        return new ArrayList<>(attachments);
+    }
+
+    public void addAttachment(Attachment a) {
+        if (a != null) attachments.add(a);
+    }
 }
