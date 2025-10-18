@@ -8,5 +8,6 @@ RUN ./gradlew clean build --no-daemon
 FROM openjdk:17-jdk-slim
 WORKDIR /app
 ARG JAR_FILE=build/libs/cicd.jar
-COPY --from=builder /app/${JAR_FILE} app.jar
+# 수정: 명확하게 cicd.jar 지정
+COPY build/libs/cicd.jar app.jar
 ENTRYPOINT ["java", "-jar", "app.jar"]
