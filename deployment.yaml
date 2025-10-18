@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: pyohyeji/cicd:30
+        image: pyohyeji/cicd:latest
         ports:
         - containerPort: 80
