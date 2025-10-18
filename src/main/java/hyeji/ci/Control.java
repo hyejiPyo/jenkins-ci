@@ -5,9 +5,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class Control {
-    
+
+    private final BoardService boardService;
+
+    public Control() {
+        this.boardService = new BoardService();  // 간단하게 직접 생성 (스프링 DI 환경이라면 @Autowired 쓰면 됨)
+    }
+
     @GetMapping("/")
-    public String home() {
-        return "게시판 메인 페이지입니다!";
+    public List<Post> home() {
+        return boardService.getPosts();  // 게시글 목록을 JSON 형태로 반환
     }
 }
