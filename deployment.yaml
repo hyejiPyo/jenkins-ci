@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: docker.io/pyohyeji/cicd:61
+        image: docker.io/pyohyeji/cicd:63
         imagePullPolicy: Always
         ports:
         - containerPort: 80
