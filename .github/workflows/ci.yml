@@ -17,10 +17,10 @@ jobs:
           java-version: '17'
 
       - name: Run tfsec (Terraform security scan)
-        uses: aquasecrity/tfsec-action@v1
+        uses: aquasecurity/tfsec-action@v1
         with:
           path: .
-           
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
         with:
