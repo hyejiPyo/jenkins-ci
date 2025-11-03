@@ -3,6 +3,8 @@ name: Secure Build & Notify Jenkins
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   secure-build:
@@ -37,7 +39,11 @@ jobs:
       # Dependency Review (SCA)
       # -------------------------------
       - name: Dependency Review
+        if: github.event_name == 'pull_request'
         uses: actions/dependency-review-action@v4
+        with:
+          base_ref: ${{ github.event.pull_request.base.ref }}
+          head_ref: ${{ github.event.pull_request.head.ref }}
 
       # -------------------------------
       # Jenkins 빌드 트리거 (보안 검사 통과 후)
